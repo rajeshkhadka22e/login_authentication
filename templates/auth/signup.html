@@ -1,0 +1,70 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block hero %}
+
+<div class="d-flex align-items-center justify-content-start w-100 bg-gradient">
+    <div class="bg-light rounded-3 shadow-lg p-4 border border-danger mx-auto neumorphism-card text-center">
+        <!-- Logo Image -->
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Messages:</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <div class="mb-2">
+            <img class="rounded-circle" src="logo.png" alt="signup" style="width: 100px; height: 100px;">
+        </div>
+
+        <!-- Title -->
+        <h2 class="h1 font-weight-semibold text-gray-800">Web Development</h2>
+        <p class="h2 text-muted">Made easy!</p>
+
+        <!-- Form -->
+        <form action="/auth/signup/" method="POST" class="mb-3 ">
+            {% csrf_token %}
+            <div class="mb-2">
+                <input type="text" name="username" placeholder="Username"
+                    class="form-control h3 rounded-pill bg-light border border-transparent text-lg shadow-inner" required>
+            </div>
+            <div class="mb-2">
+                <input type="text" name="fullname" placeholder="Full Name"
+                    class="form-control h3 rounded-pill bg-light border border-transparent text-lg shadow-inner" required>
+            </div>
+            <div class="mb-2">
+                <input type="email" name="email" placeholder="Email"
+                    class="form-control h3 rounded-pill bg-light border border-transparent text-lg shadow-inner" required>
+            </div>
+            <div class="mb-2">
+                <input type="password" name="pass1" placeholder="Password"
+                    class="form-control h3 rounded-pill bg-light border border-transparent text-lg shadow-inner" required>
+            </div>
+            <div class="mb-2">
+                <input type="password" name="pass2" placeholder="Confirm Password"
+                    class="form-control h3 rounded-pill bg-light border border-transparent text-lg shadow-inner" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">
+                Signup
+            </button>
+        </form>
+
+        <!-- Links -->
+        <div class="mt-4">
+            <a href="#" class="text-muted">Forgot password?</a>
+            <span class="mx-1 text-gray-400">or</span>
+            <a href="/auth/login/" class="text-muted">Login</a>
+        </div>
+    </div>
+
+    <!-- Custom CSS for Neumorphism -->
+    <style>
+        {% comment %} .bg-gradient {
+            background: linear-gradient(to right, #007bff, #28a745, #ffc107);
+        } {% endcomment %}
+        .neumorphism-card {
+            box-shadow: 23px 22px 20px #bebebe, -26px -25px 30px #bebebe;
+        }
+    </style>
+</div>
+{% endblock hero %}

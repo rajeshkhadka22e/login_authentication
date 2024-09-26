@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% load static %}
+{% block hero %}
+
+<div class="w-50 mx-auto mt-4">
+    <div class="border border-dark rounded-3 py-lg-4 p-4 bg-white text-dark text-center">
+        <h2 class="mb-4">Reset password </h2>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Messages:</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+         <form method="post" action="/auth/request-reset-email/">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control border-dark rounded-3" name="email" required>
+            </div>
+        
+            <!-- Corrected submit button -->
+            <button type="submit" class="btn btn-primary w-100 rounded-3 mt-4">Submit</button>
+            <a href="/auth/login/" class="text-danger text-decoration-underline">Go back</a>
+        </form>
+    </div>
+</div>
+
+{% endblock hero %}

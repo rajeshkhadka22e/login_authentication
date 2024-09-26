@@ -1,0 +1,38 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block hero %}
+
+<div class="w-50 mx-auto mt-4">
+    <div class="border border-dark rounded-3 py-lg-4 p-4 bg-white text-dark text-center">
+        <h2 class="mb-4">Sign In</h2>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Messages:</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <form  method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control border-dark rounded-3" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="pass1" class="form-label">Password</label>
+                <input type="password" class="form-control border-dark rounded-3" name="pass1" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-3 mt-4">Login </button>
+
+            <a href="/auth/request-reset-email/" class="text-danger p-2 m-2 ">Forgot Password</a>
+
+        </form>
+        
+        <div class="d-flex justify-content-between mt-4">
+            <p class="text-danger mb-0">Create account</p>
+            <a href="/auth/signup/" class="text-danger text-decoration-underline">Signup</a>
+        </div>
+    </div>
+</div>
+
+{% endblock hero %}
